@@ -1,4 +1,4 @@
-package com.example.springdemo;
+package com.DNDMaker.springdemo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
