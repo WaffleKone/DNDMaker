@@ -13,7 +13,11 @@ public enum CharacterRaces {
 
     public final String label;
 
-    private CharacterRaces(String label) {
+    CharacterRaces(String label) {
         this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

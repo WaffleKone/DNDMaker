@@ -16,7 +16,11 @@ public enum CharacterClasses {
 
     public final String label;
 
-    private CharacterClasses(String label) {
+    CharacterClasses(String label) {
         this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

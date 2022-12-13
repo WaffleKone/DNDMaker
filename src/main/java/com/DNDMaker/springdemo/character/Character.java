@@ -13,7 +13,29 @@ public class Character {
     private Long playerId;
     private CharacterAlignments characterAlignments;
     private CharacterClasses characterClasses;
-    private CharacterDetails characterDetails;
     private CharacterRaces characterRaces;
 
+    public Character(Long playerId) {
+        this.playerId = playerId;
+    }
+
+    public Long getCharacterId() {
+        return characterId;
+    }
+
+    public Long getPlayerId() {
+        return playerId;
+    }
+
+    public CharacterAlignments getCharacterAlignments() {
+        return characterAlignments;
+    }
+
+    public CharacterClasses getCharacterClasses() {
+        return characterClasses;
+    }
+
+    public CharacterRaces getCharacterRaces() {
+        return characterRaces;
+    }
 }

@@ -13,7 +13,11 @@ public enum CharacterAlignments {
 
     public final String label;
 
-    private CharacterAlignments(String label) {
+    CharacterAlignments(String label) {
         this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }
