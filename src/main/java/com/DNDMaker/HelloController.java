@@ -1,6 +1,7 @@
-package com.DNDMaker.springdemo;
+package com.DNDMaker;
 
-import com.DNDMaker.springdemo.character.Character;
+import com.DNDMaker.character.Character;
+import com.DNDMaker.character.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!";
+        return "Hello World!";
     }
     @GetMapping("/findAll")
     public List<Character> findAllCharacters() {

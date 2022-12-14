@@ -1,4 +1,4 @@
-package com.DNDMaker.springdemo.character;
+package com.DNDMaker.character;
 
 public enum CharacterAlignments {
     LG("Lawful Good"),

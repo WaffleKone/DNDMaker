@@ -1,4 +1,4 @@
-package com.DNDMaker.springdemo;
+package com.DNDMaker;
 
 import org.junit.jupiter.api.Test;
 

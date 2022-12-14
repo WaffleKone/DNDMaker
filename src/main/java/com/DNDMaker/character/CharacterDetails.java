@@ -1,4 +1,4 @@
-package com.DNDMaker.springdemo.character;
+package com.DNDMaker.character;
 
 import java.util.Map;
 

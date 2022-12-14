@@ -1,4 +1,4 @@
-package com.DNDMaker.springdemo.character;
+package com.DNDMaker.character;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +26,14 @@ public class Character {
 
     public Character(Long playerId) {
         this.playerId = playerId;
+    }
+
+    public Long getCharacterId() {
+        return characterId;
+    }
+
+    public Long getPlayerId() {
+        return playerId;
     }
 
     @Override

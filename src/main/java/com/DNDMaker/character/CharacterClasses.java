@@ -1,4 +1,4 @@
-package com.DNDMaker.springdemo.character;
+package com.DNDMaker.character;
 
 public enum CharacterClasses {
     barbarian("Barbarian"),

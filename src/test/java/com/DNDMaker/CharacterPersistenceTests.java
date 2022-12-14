@@ -1,6 +1,7 @@
-package com.DNDMaker.springdemo;
+package com.DNDMaker;
 
-import com.DNDMaker.springdemo.character.Character;
+import com.DNDMaker.character.Character;
+import com.DNDMaker.character.CharacterRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
