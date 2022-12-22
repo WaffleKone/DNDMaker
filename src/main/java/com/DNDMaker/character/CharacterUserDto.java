@@ -1,42 +1,31 @@
 package com.DNDMaker.character;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+public class CharacterUserDto {
+    private Long characterId;
 
-@Entity
-        public class Character {
+    private Long playerId;
 
-            @Id
-            @GeneratedValue(strategy = GenerationType.AUTO)
-            private Long characterId;
+    private Long userId;
 
-            private Long playerId;
+    private String characterName;
 
-            private String characterName;
+    private CharacterAlignments characterAlignments;
 
-            private CharacterAlignments characterAlignments;
+    private CharacterClasses characterClasses;
 
-            private CharacterClasses characterClasses;
+    private int characterLevel;
+    private int maxHp;
+    private int currentHp;
+    private int armor;
+    private int attackBonus;
+    private int speed;
 
-            private int characterLevel;
-            private int maxHp;
-            private int currentHp;
-            private int armor;
-            private int attackBonus;
-            private int speed;
-    public Character() {}
-
-    public Character(Long playerId) {
-        this.playerId = playerId;
-    }
-
-    public Character(Long characterId, Long playerId, String characterName, CharacterAlignments characterAlignments,
-                     CharacterClasses characterClasses, int characterLevel, int maxHp, int currentHp, int armor,
-                     int attackBonus, int speed) {
+    public CharacterUserDto(Long characterId, Long playerId, Long userId, String characterName,
+                            CharacterAlignments characterAlignments, CharacterClasses characterClasses,
+                            int characterLevel, int maxHp, int currentHp, int armor, int attackBonus, int speed) {
         this.characterId = characterId;
         this.playerId = playerId;
+        this.userId = userId;
         this.characterName = characterName;
         this.characterAlignments = characterAlignments;
         this.characterClasses = characterClasses;
@@ -52,16 +41,24 @@ import jakarta.persistence.Id;
         return characterId;
     }
 
-    public Long getPlayerId() {
-        return playerId;
-    }
-
     public void setCharacterId(Long characterId) {
         this.characterId = characterId;
     }
 
+    public Long getPlayerId() {
+        return playerId;
+    }
+
     public void setPlayerId(Long playerId) {
         this.playerId = playerId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getCharacterName() {

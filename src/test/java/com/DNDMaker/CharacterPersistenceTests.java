@@ -2,6 +2,7 @@ package com.DNDMaker;
 
 import com.DNDMaker.character.Character;
 import com.DNDMaker.character.CharacterRepository;
+import com.fasterxml.jackson.databind.util.EnumValues;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
