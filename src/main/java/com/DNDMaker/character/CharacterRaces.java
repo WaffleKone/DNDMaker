@@ -1,15 +1,9 @@
 package com.DNDMaker.character;
 
 public enum CharacterRaces {
-    dragonborn("Dragonborn"),
-    dwarf("Dwarf"),
     elf("Elf"),
-    gnome("Gnome"),
-    halfling("Halfling"),
-    halfElf("Half Elf"),
-    halfOrc("Half Orc"),
     human("Human"),
-    tiefling("Tiefling");
+    dwarf("Dwarf");
 
     public final String label;
 
