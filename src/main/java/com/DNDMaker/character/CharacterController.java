@@ -35,7 +35,7 @@ public class CharacterController {
 
     // Delete Existing Character
     @DeleteMapping(value="/deleteCharacter", consumes="application/json", produces="application/json")
-    public ResponseEntity<Character> deleteCharacter(@RequestBody Character character) {
-        return ResponseEntity.status(HttpStatus.OK).body(characterService.deleteCharacter(character));
+    public ResponseEntity<CharacterUserDto> deleteCharacter(@RequestBody CharacterUserDto characterUserDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(characterService.deleteCharacter(characterUserDto));
     }
 }

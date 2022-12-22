@@ -50,10 +50,12 @@ public class CharacterService {
         return characterUserDto;
     }
 
-    public Character deleteCharacter(Character character) {
+    public CharacterUserDto deleteCharacter(CharacterUserDto characterUserDto) {
         try {
-            characterRepository.delete(character);
-            return character;
+            if(authorizeCharacterUse(characterUserDto)) {
+                characterRepository.delete(characterRepository.findById(characterUserDto.getCharacterId()).get());
+            }
+            return characterUserDto;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
