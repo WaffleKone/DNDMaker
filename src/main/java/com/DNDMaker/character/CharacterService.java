@@ -1,12 +1,11 @@
 package com.DNDMaker.character;
 
-import com.DNDMaker.user.User;
-import com.DNDMaker.user.UserPublicInfoDto;
+import com.DNDMaker.exceptions.InvalidCharacterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CharacterService {
@@ -14,6 +13,14 @@ public class CharacterService {
 
     @Autowired
     public CharacterService(CharacterRepository characterRepository) {this.characterRepository = characterRepository;}
+
+    public Boolean authorizeCharacterUse(CharacterUserDto characterUserDto) {
+        if(characterRepository.existsById(characterUserDto.getCharacterId()) && Objects.equals(characterUserDto.getUserId(), characterUserDto.getPlayerId())) {
+            return true;
+        } else {
+            throw new InvalidCharacterException();
+        }
+    }
 
     public Character createCharacter(Character character) {
         try {
@@ -24,16 +31,23 @@ public class CharacterService {
     }
 
     public List<Character> listAllCharacters() {
-        List<Character> characters = characterRepository.findAll();
-        return characters;
+        return characterRepository.findAll();
     }
 
-    public Character updateCharacter(Character character) {
+    public CharacterUserDto updateCharacter(CharacterUserDto characterUserDto) {
         try {
-            return characterRepository.save(character);
+            if(authorizeCharacterUse(characterUserDto)) {
+                Character character = new Character(characterUserDto.getPlayerId(), characterUserDto.getCharacterId(),
+                        characterUserDto.getCharacterName(), characterUserDto.getCharacterAlignments(),
+                        characterUserDto.getCharacterClasses(), characterUserDto.getCharacterLevel(),
+                        characterUserDto.getMaxHp(), characterUserDto.getCurrentHp(), characterUserDto.getArmor(),
+                        characterUserDto.getAttackBonus(), characterUserDto.getSpeed());
+                characterRepository.save(character);
+            }
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
+        return characterUserDto;
     }
 
     public Character deleteCharacter(Character character) {

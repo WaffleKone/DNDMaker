@@ -1,5 +1,6 @@
 package com.DNDMaker.user;
 
+import com.DNDMaker.exceptions.InvalidLoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,7 @@ public class UserService {
     }
 
     public String hashPassword(String password) {
-
         String hashPass = (BCrypt.hashpw(password, BCrypt.gensalt(12)));
-
 
         return hashPass;
     }
@@ -36,21 +35,7 @@ public class UserService {
         }
     }
 
-//    public User loginAccount(User user) {
-//
-//    }
-//    public User updatePassword(Long id, String oldPassword, String newPassword) {
-//        String hashedOldPassword = hashPassword(oldPassword);
-//        Optional<User> user = findUserById(id);
-//        user.
-//        if (user.getPassword())
-//
-//        UserRegisterDto userRegisterDto = new UserRegisterDto(user.getUserId(), user.getUsername(), hashPassword(user));
-//        User savedUser = new User(userRegisterDto.getUserId(), userRegisterDto.getUsername(), userRegisterDto.getPassword());
-//        return userRepository.save(savedUser);
-//    }
-
-    public Boolean loginAccount(String username, String password) {
+    public Boolean checkValidPassword(String username, String password) {
         User foundUser = userRepository.findByUsername(username).get();
         return BCrypt.checkpw(password, foundUser.getPassword());
     }
@@ -70,5 +55,25 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public UserPublicInfoDto changePassword(String username, String oldPassword, String newPassword) {
+        if (checkValidPassword(username, oldPassword)) {
+            User foundUser = userRepository.findByUsername(username).get();
+            foundUser.setPassword(hashPassword(newPassword));
+            userRepository.save(foundUser);
+            return new UserPublicInfoDto(foundUser.getUsername(), foundUser.getUserId());
+        } else {
+            throw new InvalidLoginException();
+        }
+    }
 
+    public Boolean deleteAccount(String username, String password) {
+        if(checkValidPassword(username, password)) {
+            User foundUser = userRepository.findByUsername(username).get();
+            userRepository.delete(foundUser);
+            return true;
+        } else {
+            throw new IllegalArgumentException("Invalid Username or Password");
+        }
+
+    }
 }

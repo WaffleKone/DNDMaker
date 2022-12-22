@@ -32,7 +32,7 @@ public class UserController {
 
     // Get All User Info
 
-    @GetMapping(value = "/userList", produces = "application/json")
+    @GetMapping(value = "/user/list", produces = "application/json")
     public ResponseEntity<List<UserPublicInfoDto>> listAllUsers() {
 
         return ResponseEntity.status(HttpStatus.OK).body(userService.listAllUsers());
@@ -43,9 +43,19 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findUserById(id));
     }
 
-    @GetMapping(value = "/userLogin",produces = "application/json")
+    @GetMapping(value = "/user/login",produces = "application/json")
     public ResponseEntity<Boolean> loginAccount(@RequestParam String username, String password) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.loginAccount(username, password));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.checkValidPassword(username, password));
+    }
+
+    @PutMapping(value = "/user/changePassword",produces = "application/json")
+    public ResponseEntity<UserPublicInfoDto> changePassword(@RequestParam String username, String oldPassword, String newPassword) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.changePassword(username, oldPassword, newPassword));
+    }
+
+    @DeleteMapping(value="/user/deleteAccount", produces = "application/json")
+    public ResponseEntity<Boolean> deleteAccount(@RequestParam String username, String password){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.deleteAccount(username, password));
     }
 
 }
