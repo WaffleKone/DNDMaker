@@ -1,19 +1,10 @@
 package com.DNDMaker.character;
 
 public enum CharacterClasses {
-    barbarian("Barbarian"),
-    bard("Bard"),
-    cleric("Cleric"),
-    druid("Druid"),
     fighter("Fighter"),
-    monk("Monk"),
-    paladin("Paladin"),
-    ranger("Ranger"),
     rogue("Rogue"),
-    sorcerer("Sorcerer"),
-    warlock("Warlock"),
-    wizard("Wizard");
-
+    wizard("Wizard"),
+    priest("Priest");
     public final String label;
 
     CharacterClasses(String label) {

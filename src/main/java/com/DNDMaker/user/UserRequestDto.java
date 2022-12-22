@@ -1,6 +1,6 @@
 package com.DNDMaker.user;
 
-public class UserRequestDTO {
+public class UserRequestDto {
     private String username;
     private String password;
 

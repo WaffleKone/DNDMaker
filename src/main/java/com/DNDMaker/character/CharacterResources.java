@@ -3,67 +3,36 @@ package com.DNDMaker.character;
 import java.util.Map;
 
 public class CharacterResources {
-    private Integer maxHitPoints;
-    private Integer currentHitPoints;
-    private Integer temporaryHitPoints;
-    private Integer maxHitDice;
-    private Integer currentHitDice;
-    private Boolean inspiration;
-    private Map<CurrencyTypes, Integer> currencies;
+    private int maxHp;
+    private int currentHp;
+    private int armor;
+    private int attackBonus;
 
-    public Integer getMaxHitPoints() {
-        return maxHitPoints;
+    private int speed;
+
+    public CharacterResources() {
     }
 
-    public void setMaxHitPoints(Integer maxHitPoints) {
-        this.maxHitPoints = maxHitPoints;
+    public CharacterResources(int maxHp, int currentHp, int armor, int attackBonus) {
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+        this.armor = armor;
+        this.attackBonus = attackBonus;
     }
 
-    public Integer getCurrentHitPoints() {
-        return currentHitPoints;
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
     }
 
-    public void setCurrentHitPoints(Integer currentHitPoints) {
-        this.currentHitPoints = currentHitPoints;
+    public void setCurrentHp(int currentHp) {
+        this.currentHp = currentHp;
     }
 
-    public Integer getTemporaryHitPoints() {
-        return temporaryHitPoints;
+    public void setArmor(int armor) {
+        this.armor = armor;
     }
 
-    public void setTemporaryHitPoints(Integer temporaryHitPoints) {
-        this.temporaryHitPoints = temporaryHitPoints;
-    }
-
-    public Integer getMaxHitDice() {
-        return maxHitDice;
-    }
-
-    public void setMaxHitDice(Integer maxHitDice) {
-        this.maxHitDice = maxHitDice;
-    }
-
-    public Integer getCurrentHitDice() {
-        return currentHitDice;
-    }
-
-    public void setCurrentHitDice(Integer currentHitDice) {
-        this.currentHitDice = currentHitDice;
-    }
-
-    public Boolean getInspiration() {
-        return inspiration;
-    }
-
-    public void setInspiration(Boolean inspiration) {
-        this.inspiration = inspiration;
-    }
-
-    public Map<CurrencyTypes, Integer> getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(Map<CurrencyTypes, Integer> currencies) {
-        this.currencies = currencies;
+    public void setAttackBonus(int attackBonus) {
+        this.attackBonus = attackBonus;
     }
 }
