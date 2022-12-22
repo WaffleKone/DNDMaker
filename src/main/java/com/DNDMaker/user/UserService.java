@@ -53,6 +53,11 @@ public class UserService {
 //        User savedUser = new User(userRegisterDto.getUserId(), userRegisterDto.getUsername(), userRegisterDto.getPassword());
 //        return userRepository.save(savedUser);
 //    }
+
+    public Optional<User> loginAccount(String username) {
+        Optional<User> foundUser = userRepository.findByUsername(username);
+        return foundUser;
+    }
     public List<UserPublicInfoDto> listAllUsers() {
         List<User> users = userRepository.findAll();
         List<UserPublicInfoDto> userPublicInfoDtos = new ArrayList<>();

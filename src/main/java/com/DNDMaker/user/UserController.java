@@ -38,9 +38,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.listAllUsers());
 
     }
-    @GetMapping(value = "/user", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Optional<User>> findUserById(@RequestBody Long id) {
+    @GetMapping(value = "/user",produces = "application/json")
+    public ResponseEntity<Optional<User>> findUserById(@RequestParam Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findUserById(id));
     }
+
+    @GetMapping(value = "/userLogin",produces = "application/json")
+    public ResponseEntity<Optional<User>> loginAccount(@RequestParam String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.loginAccount(username));
+    }
+
 }
 
