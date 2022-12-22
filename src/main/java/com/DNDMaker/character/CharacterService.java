@@ -14,8 +14,8 @@ public class CharacterService {
     @Autowired
     public CharacterService(CharacterRepository characterRepository) {this.characterRepository = characterRepository;}
 
-    public Boolean authorizeCharacterUse(CharacterUserDto characterUserDto) {
-        if(characterRepository.existsById(characterUserDto.getCharacterId()) && Objects.equals(characterUserDto.getUserId(), characterUserDto.getPlayerId())) {
+    public Boolean authorizeCharacterUse(CharacterUserIdDto characterUserIdDto) {
+        if(characterRepository.existsById(characterUserIdDto.getCharacterId()) && Objects.equals(characterUserIdDto.getUserId(), characterUserIdDto.getPlayerId())) {
             return true;
         } else {
             throw new InvalidCharacterException();
@@ -36,7 +36,7 @@ public class CharacterService {
 
     public CharacterUserDto updateCharacter(CharacterUserDto characterUserDto) {
         try {
-            if(authorizeCharacterUse(characterUserDto)) {
+            if(authorizeCharacterUse(new CharacterUserIdDto(characterUserDto.getCharacterId(), characterUserDto.getUserId(), characterUserDto.getPlayerId()))) {
                 Character character = new Character(characterUserDto.getPlayerId(), characterUserDto.getCharacterId(),
                         characterUserDto.getCharacterName(), characterUserDto.getCharacterAlignments(),
                         characterUserDto.getCharacterClasses(), characterUserDto.getCharacterLevel(),
@@ -50,12 +50,12 @@ public class CharacterService {
         return characterUserDto;
     }
 
-    public CharacterUserDto deleteCharacter(CharacterUserDto characterUserDto) {
+    public CharacterUserIdDto deleteCharacter(CharacterUserIdDto characterUserIdDto) {
         try {
-            if(authorizeCharacterUse(characterUserDto)) {
-                characterRepository.delete(characterRepository.findById(characterUserDto.getCharacterId()).get());
+            if(authorizeCharacterUse(characterUserIdDto)) {
+                characterRepository.delete(characterRepository.findById(characterUserIdDto.getCharacterId()).get());
             }
-            return characterUserDto;
+            return characterUserIdDto;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
