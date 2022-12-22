@@ -1,7 +1,7 @@
 package com.DNDMaker.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,15 +18,11 @@ public class UserService {
     }
 
     public String hashPassword(String password) {
-        SCryptPasswordEncoder encoder = new SCryptPasswordEncoder(16384, 8, 4, 32, 64);
 
-        String encodedPassword = encoder.encode(password);
-        System.out.println(encodedPassword);
+        String hashPass = (BCrypt.hashpw(password, BCrypt.gensalt(12)));
 
-        Boolean isValidPassword = encoder.matches(password, encodedPassword);
-        System.out.println(isValidPassword);
 
-        return encodedPassword;
+        return hashPass;
     }
 
     public User registerAccount(User user) {
@@ -54,9 +50,9 @@ public class UserService {
 //        return userRepository.save(savedUser);
 //    }
 
-    public Optional<User> loginAccount(String username) {
-        Optional<User> foundUser = userRepository.findByUsername(username);
-        return foundUser;
+    public Boolean loginAccount(String username, String password) {
+        User foundUser = userRepository.findByUsername(username).get();
+        return BCrypt.checkpw(password, foundUser.getPassword());
     }
     public List<UserPublicInfoDto> listAllUsers() {
         List<User> users = userRepository.findAll();

@@ -44,8 +44,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/userLogin",produces = "application/json")
-    public ResponseEntity<Optional<User>> loginAccount(@RequestParam String username) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.loginAccount(username));
+    public ResponseEntity<Boolean> loginAccount(@RequestParam String username, String password) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.loginAccount(username, password));
     }
 
 }
